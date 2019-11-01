@@ -1,0 +1,5 @@
+TC:O(m*n)
+SC:O(m*n)
+1st solution
+https://www.geeksforgeeks.org/longest-common-substring-dp-29/   
+Also refer https://www.techiedelight.com/longest-common-substring-problem/ to know how to print the array
