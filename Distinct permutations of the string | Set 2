@@ -1,0 +1,80 @@
+Distinct permutations of the string | Set 2
+
+Print all distinct permutation of a string having duplicates.
+
+Examples:
+
+Input : ABCA
+Output : AABC AACB ABAC ABCA ACBA 
+         ACAB BAAC BACA BCAA CABA 
+         CAAB CBAA
+Recommended: Please try your approach on {IDE} first, before moving on to the solution.
+An algorithm to print all distinct permutations has already been discussed here. Here we’ll discuss one more approach to do the same. Recall first how we print permutations without any duplicates in the input string. It is given here. Let’s now take the case of the string “ABAC”. While generating permutations, let’s say we are at index = 0, swap it with all elements after it. When we reach at i=2, we see that in the string s[index…i-1], there was an index which is equal to s[i]. Thus, swapping it will produce repeated permutations. Thus, we don’t swap it. The below explains it better.
+
+
+
+ 
+
+Illustration : Let us understand with below example.
+
+i = 0 1 2 3
+    A B A C
+index = 0, s[0] = A
+Start swapping s[index] with s[i] following it:
+i = index + 1 = 1 
+
+Since s[index] != s[i], swap and recur.
+
+i = 2, s[index] == s[i], don't swap
+
+i = 3,  s[index] != s[i], swap and recur. 
+Below code does the same.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to distinct permutations of the string 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// Returns true if str[curr] does not matches with any of the 
+// characters after str[start] 
+bool shouldSwap(char str[], int start, int curr) 
+{ 
+    for (int i = start; i < curr; i++)  
+        if (str[i] == str[curr]) 
+            return 0; 
+    return 1; 
+} 
+  
+// Prints all distinct permutations in str[0..n-1] 
+void findPermutations(char str[], int index, int n) 
+{ 
+    if (index >= n) { 
+        cout << str << endl; 
+        return; 
+    } 
+  
+    for (int i = index; i < n; i++) { 
+  
+        // Proceed further for str[i] only if it  
+        // doesn't match with any of the characters 
+        // after str[index] 
+        bool check = shouldSwap(str, index, i); 
+        if (check) { 
+            swap(str[index], str[i]); 
+            findPermutations(str, index + 1, n); 
+            swap(str[index], str[i]); 
+        } 
+    } 
+} 
+  
+// Driver code 
+int main() 
+{ 
+    char str[] = "ABCA"; 
+    int n = strlen(str); 
+    findPermutations(str, 0, n); 
+    return 0; 
+} 
