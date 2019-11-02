@@ -1,0 +1,87 @@
+Given an array, find an element before which all elements are smaller than it, and after which all are greater than it. Return the index of the element if there is such an element, otherwise, return -1.
+Examples:
+
+Input: arr[] = {5, 1, 4, 3, 6, 8, 10, 7, 9};
+Output: 4
+Explanation: All elements on left of arr[4] are smaller than it
+and all elements on right are greater.
+
+
+
+ 
+
+Input: arr[] = {5, 1, 4, 4};
+Output: -1
+Explanation : No such index exits.
+
+Expected time complexity: O(n).
+
+Recommended: Please solve it on “PRACTICE ” first, before moving on to the solution.
+A simple solution is to consider every element one by one. For every element, compare it with all elements on the left and all elements on right. Time complexity of this solution is O(n2).
+
+An Efficient Solution can solve this problem in O(n) time using O(n) extra space. Below is detailed solution.
+
+Create two arrays leftMax[] and rightMin[].
+Traverse input array from left to right and fill leftMax[] such that leftMax[i] contains maximum element from 0 to i-1 in input array.
+Traverse input array from right to left and fill rightMin[] such that rightMin[i] contains minimum element from to n-1 to i+1 in input array.
+Traverse input array. For every element arr[i], check if arr[i] is greater than leftMax[i] and smaller than rightMin[i]. If yes, return i.
+A Further Optimization to the above approach is to use only one extra array and traverse input array only twice. The first traversal is the same as above and fills leftMax[]. Next traversal traverses from the right and keeps track of the minimum. The second traversal also finds the required element.
+
+Below image is a dry run of the above approach:
+
+
+
+Below is the implementation of above approach.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to find the element which is greater than 
+// all left elements and smaller than all right elements. 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// Function to return the index of the element which is greater than 
+// all left elements and smaller than all right elements. 
+int findElement(int arr[], int n) 
+{ 
+    // leftMax[i] stores maximum of arr[0..i-1] 
+    int leftMax[n]; 
+    leftMax[0] = INT_MIN; 
+  
+    // Fill leftMax[]1..n-1] 
+    for (int i = 1; i < n; i++) 
+        leftMax[i] = max(leftMax[i-1], arr[i-1]); 
+  
+    // Initialize minimum from right 
+    int rightMin = INT_MAX; 
+  
+    // Traverse array from right 
+    for (int i=n-1; i>=0; i--) 
+    { 
+        // Check if we found a required element 
+        if (leftMax[i] < arr[i] && rightMin > arr[i]) 
+             return i; 
+  
+        // Update right minimum 
+        rightMin = min(rightMin, arr[i]); 
+    } 
+  
+    // If there was no element matching criteria 
+    return -1; 
+} 
+  
+// Driver program 
+int main() 
+{ 
+    int arr[] = {5, 1, 4, 3, 6, 8, 10, 7, 9}; 
+    int n = sizeof arr / sizeof arr[0]; 
+    cout << "Index of the element is " << findElement(arr, n); 
+    return 0; 
+} 
+Output:
+
+Index of the element is 4
+Time Complexity: O(n)
+Auxiliary Space: O(n)
