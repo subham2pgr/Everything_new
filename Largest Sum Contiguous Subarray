@@ -1,3 +1,5 @@
+See both the methods mentioned here and also see the geeksforgeeks video for this
+
 #include<iostream> 
 #include<climits> 
 using namespace std; 
@@ -43,3 +45,43 @@ Output:
 Maximum contiguous sum is 7
 Starting index 2
 Ending index 6
+
+
+
+
+Following is another simple implementation suggested by Mohit Kumar. The implementation handles the case when all numbers in array are negative.
+filter_none
+edit
+play_arrow
+
+brightness_4
+#include<iostream> 
+using namespace std; 
+  
+int maxSubArraySum(int a[], int size) 
+{ 
+   int max_so_far = a[0]; 
+   int curr_max = a[0]; 
+  
+   for (int i = 1; i < size; i++) 
+   { 
+        curr_max = max(a[i], curr_max+a[i]); 
+        max_so_far = max(max_so_far, curr_max); 
+   } 
+   return max_so_far; 
+} 
+  
+/* Driver program to test maxSubArraySum */
+int main() 
+{ 
+   int a[] =  {-2, -3, 4, -1, -2, 1, 5, -3}; 
+   int n = sizeof(a)/sizeof(a[0]); 
+   int max_sum = maxSubArraySum(a, n); 
+   cout << "Maximum contiguous sum is " << max_sum; 
+   return 0; 
+} 
+
+Output:
+Maximum contiguous sum is 7
+To print the subarray with the maximum sum, we maintain indices whenever we get the maximum sum.
+filter_none
