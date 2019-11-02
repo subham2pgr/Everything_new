@@ -1,0 +1,106 @@
+Maximum sum of lengths of non-overlapping subarrays with k as the max element.
+Find the maximum sum of lengths of non-overlapping subarrays (contiguous elements) with k as the maximum element.
+Examples:
+
+ 
+Input : arr[] = {2, 1, 4, 9, 2, 3, 8, 3, 4} 
+        k = 4
+Output : 5
+{2, 1, 4} => Length = 3
+{3, 4} => Length = 2
+So, 3 + 2 = 5 is the answer
+
+Input : arr[] = {1, 2, 3, 2, 3, 4, 1} 
+        k = 4
+Output : 7
+{1, 2, 3, 2, 3, 4, 1} => Length = 7
+
+Input : arr = {4, 5, 7, 1, 2, 9, 8, 4, 3, 1}
+        k = 4
+Ans = 4
+{4} => Length = 1
+{4, 3, 1} => Length = 3
+So, 1 + 3 = 4 is the answer
+question source : https://www.geeksforgeeks.org/amazon-interview-experience-set-376-campus-internship/
+
+
+
+ 
+
+Recommended: Please solve it on “PRACTICE ” first, before moving on to the solution.
+Algorithm :
+
+Traverse the array starting from first element
+   Take a loop and keep on incrementing count 
+   If element is less than equal to k
+       if array element is equal to k, then mark
+       a flag
+   
+   If flag is marked, add this count to answer
+   
+   Take another loop and traverse the array 
+   till element is greater than k
+return ans
+filter_none
+edit
+play_arrow
+
+brightness_4
+// CPP program to calculate max sum lengths of 
+// non overlapping contiguous subarrays with k as 
+// max element 
+#include <bits/stdc++.h> 
+using namespace std; 
+   
+// Returns max sum of lengths with maximum element 
+// as k 
+int calculateMaxSumLength(int arr[], int n, int k) 
+{ 
+    int ans = 0; // final sum of lengths 
+   
+    // number of elements in current subarray 
+    int count = 0;  
+   
+    // variable for checking if k appeared in subarray 
+    int flag = 0;  
+   
+    for (int i = 0; i < n;) { 
+        count = 0; 
+        flag = 0; 
+   
+        // count the number of elements which are 
+        // less than equal to k 
+        while (arr[i] <= k && i < n) { 
+            count++; 
+            if (arr[i] == k) 
+                flag = 1; 
+            i++; 
+        } 
+   
+        // if current element appeared in current  
+        // subarray add count to sumLength 
+        if (flag == 1)  
+            ans += count;     
+   
+        // skip the array elements which are  
+        // greater than k 
+        while (arr[i] > k && i < n)  
+            i++;      
+    } 
+    return ans; 
+} 
+   
+// driver program 
+int main() 
+{ 
+    int arr[] = { 4, 5, 7, 1, 2, 9, 8, 4, 3, 1 }; 
+    int size = sizeof(arr) / sizeof(arr[0]); 
+    int k = 4; 
+    int ans = calculateMaxSumLength(arr, size, k); 
+    cout << "Max Length :: " << ans << endl; 
+    return 0; 
+}
+
+Output:
+Max Length :: 4
+Time Complexity : O(n)
