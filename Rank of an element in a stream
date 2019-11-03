@@ -1,0 +1,38 @@
+https://www.geeksforgeeks.org/rank-element-stream/
+
+Another approach:
+Traverse the array from the beginning. While traversing, count the nodes which is equal to or less than the given key.Print the count(Rank).
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to find rank of an  
+// element in a stream.  
+#include <iostream> 
+using namespace std; 
+  
+// Driver code 
+int main() 
+{ 
+    int a[] = {5, 1, 14, 4, 15, 9, 7, 20, 11}; 
+    int key = 20; 
+    int arraySize = sizeof(a)/sizeof(a[0]); 
+    int count = 0; 
+    for(int i = 0; i < arraySize; i++) 
+    { 
+        if(a[i] <= key) 
+        { 
+            count += 1; 
+        } 
+    } 
+    cout << "Rank of " << key << " in stream is: " 
+            << count-1 << endl; 
+    return 0; 
+} 
+  
+// This code is contributed by  
+// Ashwin Loganathan. 
+
+Output:
+Rank of 20 in stream is: 8
