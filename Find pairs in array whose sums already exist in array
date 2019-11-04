@@ -1,0 +1,48 @@
+An Efficient solution is to store all element in an hash table (unordered_set in C++) and check one by one all pairs and check its sum exists in set or not. If it exists in set then print pair. If no pair found in array then print not exists .
+
+Recommended: Please try your approach on {IDE} first, before moving on to the solution.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to find pair whose sum already 
+// exists in array 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// Function to find pair whose sum exists in arr[] 
+void findPair(int arr[], int n) 
+{ 
+    // Hash to store all element of array 
+    unordered_set<int> s; 
+    for (int i = 0; i < n; i++) 
+        s.insert(arr[i]); 
+  
+    bool found = false; 
+    for (int i = 0; i < n; i++) { 
+        for (int j = i + 1; j < n; j++) { 
+            // Check sum already exists or not 
+            if (s.find(arr[i] + arr[j]) != s.end()) { 
+                cout << arr[i] << " " << arr[j] << endl; 
+                found = true; 
+            } 
+        } 
+    } 
+  
+    if (found == false) 
+        cout << "Not exist" << endl; 
+} 
+  
+// Driven code 
+int main() 
+{ 
+    int arr[] = { 10, 4, 8, 13, 5 }; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    findPair(arr, n); 
+    return 0; 
+} 
+
+Output:
+8 5
+Time Complexity : O(n2)
