@@ -1,0 +1,2 @@
+A music player has N songs , you have a random number generator rand(n) which generates a number from [0,n-1] .Your task is to play a random song from given N songs such that each song is played once and your program should terminate once you have played all the songs.
+Shuffle a given array using Fisher–Yates shuffle Algorithm
