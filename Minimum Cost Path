@@ -1,2 +1,4 @@
 https://www.techiedelight.com/find-minimum-cost-reach-last-cell-matrix-first-cell/
 https://www.youtube.com/watch?v=lBRtnuxg-gU
+if it includes modification such as diagonal path also is included along woth bottom and right steps,include T[i-1][j-1] in the minimum parameter in this code
+T[i][j] += min(T[i - 1][j], T[i][j - 1],T[i-1][j - 1]);
