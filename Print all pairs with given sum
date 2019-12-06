@@ -1,4 +1,4 @@
-
+Note that the worst case of time complexity of this solution is O(c + n) where c is count of pairs with given sum.
 Refer this solution below here only.
 #include <bits/stdc++.h> 
   
