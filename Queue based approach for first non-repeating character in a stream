@@ -1,5 +1,5 @@
 Given a stream of characters and we have to find first non repeating character each time a character is inserted to the stream.
-
+time complexity??
 Examples:
 
 Input  : a a b c
