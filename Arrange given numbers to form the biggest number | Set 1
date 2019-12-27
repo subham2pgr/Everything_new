@@ -1,3 +1,36 @@
+LeetCode Solution
+bool compare(string a, string b) {
+    return a + b > b + a;
+}
+
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        // transform to strings
+        vector<string> strs;
+        for (int i = 0; i < nums.size(); ++i) {
+            strs.push_back(to_string(nums[i]));
+        }
+        
+        // sort via custom comparator
+        sort(strs.begin(), strs.end(), compare);
+        
+        // return "0", when all strings are "0"
+        if (strs[0] == "0") return "0";
+        
+        // concatenate all strings
+        string ans;
+        for (int i = 0; i < strs.size(); ++i) {
+            ans += strs[i];
+        }
+        
+        return ans;
+    }
+};
+
+
+
+
 Arrange given numbers to form the biggest number | Set 1
 Given an array of numbers, arrange them in a way that yields the largest value. For example, if the given numbers are {54, 546, 548, 60}, the arrangement 6054854654 gives the largest value. And if the given numbers are {1, 34, 3, 98, 9, 76, 45, 4}, then the arrangement 998764543431 gives the largest value.
 
